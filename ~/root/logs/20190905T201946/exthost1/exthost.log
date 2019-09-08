@@ -1,0 +1,66 @@
+[2019-09-05 20:53:02.717] [exthost] [info] extension host started
+[2019-09-05 20:53:02.762] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:02.762] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2019-09-05 20:53:02.767] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:02.767] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2019-09-05 20:53:02.788] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:02.788] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2019-09-05 20:53:02.923] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:02.923] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2019-09-05 20:53:02.939] [exthost] [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:02.939] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/dbaeumer.vscode-eslint-1.9.0/client/out/extension
+[2019-09-05 20:53:03.000] [exthost] [info] ExtensionService#_doActivateExtension eamodio.gitlens {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:03.000] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/eamodio.gitlens-9.9.1/dist/extension
+[2019-09-05 20:53:03.204] [exthost] [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:03.204] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/esbenp.prettier-vscode-2.2.2/out/extension
+[2019-09-05 20:53:03.465] [exthost] [info] ExtensionService#_doActivateExtension lihui.vs-color-picker {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:03.465] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/lihui.vs-color-picker-1.0.0/out/src/extension
+[2019-09-05 20:53:03.467] [exthost] [info] ExtensionService#_doActivateExtension pranaygp.vscode-css-peek {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:03.467] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/pranaygp.vscode-css-peek-3.0.2/out/client/src/extension
+[2019-09-05 20:53:03.533] [exthost] [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:03.533] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/ritwickdey.liveserver-5.6.1/out/src/extension
+[2019-09-05 20:53:03.887] [exthost] [info] eager extensions activated
+[2019-09-05 20:53:08.689] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:08.689] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/configuration-editing/dist/extension
+[2019-09-05 20:53:08.699] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:08.699] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension
+[2019-09-05 20:53:08.754] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:08.754] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/json-language-features/client/dist/jsonMain
+[2019-09-05 20:53:08.849] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:08.849] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/npm/dist/main
+[2019-09-05 20:53:08.875] [exthost] [info] ExtensionService#_doActivateExtension renran.vuecsstidy {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:08.875] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/renran.vuecsstidy-0.1.0/src/extension.js
+[2019-09-05 20:53:09.822] [exthost] [info] extension host started
+[2019-09-05 20:53:09.851] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:09.851] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/configuration-editing/dist/extension
+[2019-09-05 20:53:09.860] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:09.860] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension
+[2019-09-05 20:53:09.912] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:09.912] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/json-language-features/client/dist/jsonMain
+[2019-09-05 20:53:10.004] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:10.004] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/npm/dist/main
+[2019-09-05 20:53:10.026] [exthost] [info] ExtensionService#_doActivateExtension renran.vuecsstidy {"startup":false,"activationEvent":"onLanguage:json"}
+[2019-09-05 20:53:10.026] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/renran.vuecsstidy-0.1.0/src/extension.js
+[2019-09-05 20:53:10.028] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.028] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2019-09-05 20:53:10.031] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.031] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2019-09-05 20:53:10.054] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.054] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2019-09-05 20:53:10.188] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.188] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2019-09-05 20:53:10.197] [exthost] [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.197] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/dbaeumer.vscode-eslint-1.9.0/client/out/extension
+[2019-09-05 20:53:10.247] [exthost] [info] ExtensionService#_doActivateExtension eamodio.gitlens {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.247] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/eamodio.gitlens-9.9.1/dist/extension
+[2019-09-05 20:53:10.482] [exthost] [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.482] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/esbenp.prettier-vscode-2.2.2/out/extension
+[2019-09-05 20:53:10.768] [exthost] [info] ExtensionService#_doActivateExtension lihui.vs-color-picker {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.768] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/lihui.vs-color-picker-1.0.0/out/src/extension
+[2019-09-05 20:53:10.769] [exthost] [info] ExtensionService#_doActivateExtension pranaygp.vscode-css-peek {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.769] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/pranaygp.vscode-css-peek-3.0.2/out/client/src/extension
+[2019-09-05 20:53:10.833] [exthost] [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer {"startup":true,"activationEvent":"*"}
+[2019-09-05 20:53:10.833] [exthost] [info] ExtensionService#loadCommonJSModule /home/chandan/.vscode/extensions/ritwickdey.liveserver-5.6.1/out/src/extension
+[2019-09-05 20:53:11.169] [exthost] [info] eager extensions activated
+[2019-09-05 20:53:14.345] [exthost] [info] ExtensionService#_doActivateExtension vscode.php-language-features {"startup":false,"activationEvent":"onLanguage:php"}
+[2019-09-05 20:53:14.345] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/php-language-features/dist/phpMain
