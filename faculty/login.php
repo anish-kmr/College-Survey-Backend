@@ -17,15 +17,17 @@ $app->post('/faculty/login',function(){
     echo json_encode($response);    
 });
 
-$app->get('/faculty/signin',function(){
-    // $data = json_decode(file_get_contents('php://input'), true);
+$app->put('/faculty/signin',function(){
+    $data = json_decode(file_get_contents('php://input'), true);
 
-//Dummy data to test
-    $data = array();
-    $data['first_name']="uhadsh";
-    $data['last_name']="uhadsh value";
-    $data['email']="delete@mail.com";
-    $data['password']="uhadsh value";
+// //Dummy data to test
+    // $data = array();
+    // $data['first_name']="anish";
+    // $data['last_name']=" value";
+    // $data['email']="delete@mail.com";
+    // $data['password']="uhadsh ";
+    // $data['department']="es ";
+    // $data['subjects']=array("Maths","ES");
     $status = signin("faculty",$data);
     $response = array("created"=>$status);
 

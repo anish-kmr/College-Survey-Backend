@@ -6,8 +6,8 @@ $create_admin_query=
         `adminID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         `name` VARCHAR(30) NOT NULL , 
         `email` VARCHAR(30) NOT NULL UNIQUE, 
-        `department` VARCHAR(15) NOT NULL UNIQUE, 
-        `password` VARCHAR(30) NOT NULL 
+        `department` VARCHAR(15) NOT NULL, 
+        `password` VARCHAR(32) NOT NULL 
     )
 ";
     
@@ -20,7 +20,8 @@ $create_student_query=
         `batch` VARCHAR(3) NOT NULL , 
         `year` INT(1) NOT NULL , 
         `email` VARCHAR(30) NOT NULL  UNIQUE, 
-        `password` VARCHAR(30) NOT NULL 
+        `type` VARCHAR(10) NOT NULL, 
+        `password` VARCHAR(32) NOT NULL 
     )
 ";
     
@@ -30,11 +31,32 @@ $create_faculty_query=
         `facultyID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         `name` VARCHAR(30) NOT NULL , 
         `email` VARCHAR(30) NOT NULL  UNIQUE, 
-        `password` VARCHAR(30) NOT NULL 
+        `department` VARCHAR(15) NOT NULL , 
+        `password` VARCHAR(32) NOT NULL 
+    )
+";
+
+
+$create_teaches_query=
+"
+    CREATE TABLE teaches ( 
+        `subjectID` INT(5), 
+        `facultyID` INT(5), 
+        FOREIGN KEY(subjectID) REFERENCES subjects(subjectID),
+        FOREIGN KEY(facultyID) REFERENCES faculty(facultyID)
+
+    )
+";
+
+$create_subjects_query=
+"
+    CREATE TABLE subjects ( 
+        `subjectID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+        `name` VARCHAR(30) NOT NULL UNIQUE
+
     )
 ";
     
-
 
 
 function set_ai($tablename,$start){

@@ -11,14 +11,28 @@ require_once "tables.php";
 if(!$db->exist_table("admin")){
     $db->query($create_admin_query);
     $db->query(set_ai("admin",1000));
+    echo "Admin created <br>";
+    
 }
 if(!$db->exist_table("student")){
     $db->query($create_student_query);
     $db->query(set_ai("student",2000));
+    echo "Student created <br>";
 }
 if(!$db->exist_table("faculty")){
     $db->query($create_faculty_query);
     $db->query(set_ai("faculty",3000));
+    echo "faculty created <br>";
+}
+if(!$db->exist_table("subjects")){
+    $db->query($create_subjects_query);
+    $db->query(set_ai("subjects",4000));
+    echo "subjects created <br>";
+    
+}
+if(!$db->exist_table("teaches")){
+    $db->query($create_teaches_query);
+    echo "teaches created <br>";
 }
 
 ?>

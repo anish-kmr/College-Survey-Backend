@@ -12,9 +12,13 @@ class Database{
     }
     public function resetDatabase(){
         $sql = "
+
+        drop table teaches;
         drop table student;
         drop table admin;
         drop table faculty;
+        drop table subjects;
+
         ";
         mysqli_multi_query($this->connection,$sql);
         echo "tables deleted";
@@ -34,7 +38,7 @@ class Database{
                 return $array;
             }
             else{
-                return false;
+                return 0;
             }
         }
         
