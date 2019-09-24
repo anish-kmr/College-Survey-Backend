@@ -34,5 +34,28 @@ if(!$db->exist_table("teaches")){
     $db->query($create_teaches_query);
     echo "teaches created <br>";
 }
+if(!$db->exist_table("survey")){
+    $db->query($create_survey_query);
+    $db->query(set_ai("subjects",5000));
+    echo "survey created <br>";
+}
+if(!$db->exist_table("questions")){
+    $db->query($create_questions_query);
+    $db->query(set_ai("subjects",6000));
+    echo "questions created <br>";
+}
+if(!$db->exist_table("templates")){
+    $db->query($create_templates_query);
+    echo "templates created <br>";
+    $res = $db->multi_query($insert_template_query);
+    if($res) echo "Templates created";
+}
+if(!$db->exist_table("templateQs")){
+    $db->query($create_templateQs_query);
+    echo "templateQs created <br>";
+    $res = $db->multi_query($insert_templateqs_query);
+    if($res) echo "Templates question created";
+}
+
 
 ?>

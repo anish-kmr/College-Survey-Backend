@@ -23,7 +23,7 @@ function authenticate($tablename,$email,$password){
     $res = $db->query("Select * from ".$tablename." where email = '".$email."'");
     if($res){
         $dbpwd = $res[0]['password'];
-        if(md5($password) == $dbpwd) return 1;
+        if(md5($password) == $dbpwd) return $res;
         else return 0;
     }
     else return -1;

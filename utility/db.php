@@ -10,9 +10,18 @@ class Database{
     public function check(){
         echo "Working DB handlerrr";
     }
+    public function multi_query($queries)
+    {
+        $res = mysqli_multi_query($this->connection,$queries);
+        return $res;
+    }
     public function resetDatabase(){
         $sql = "
 
+        drop table templateQs;
+        drop table templates;
+        drop table questions;
+        drop table survey;
         drop table teaches;
         drop table student;
         drop table admin;

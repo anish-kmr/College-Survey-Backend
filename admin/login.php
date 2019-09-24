@@ -15,9 +15,12 @@ $app->post('/admin/login',function(){
     $status = authenticate("admin",$email,$password);
     $response = array("authenticated"=>false,"not_found"=>false,"password_wrong"=>false);
 
-    if($status==1)        $response['authenticated']=true;
-    elseif($status == 0)  $response['password_wrong']=true;
+    if($status == 0)  $response['password_wrong']=true;
     elseif($status == -1) $response['not_found']=true;
+    else{
+        $response['authenticated']=true;
+        $response['user'] = $status[0];
+    }
 
     echo json_encode($response);    
 });
