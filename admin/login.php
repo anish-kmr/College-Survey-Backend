@@ -2,7 +2,12 @@
 require_once "utility/apiHandler.php" ;
 require_once "utility/login_util.php";
 
-
+$app->get('/admin/validate_email',function(){
+    global $db;
+    $email = $_GET['email'];
+    $available = validateEmail("admin",$email);
+    echo json_encode(array("available"=>$available));
+});
 $app->post('/admin/login',function(){
     $data = json_decode(file_get_contents('php://input'), true);
     $email=$data['email'];

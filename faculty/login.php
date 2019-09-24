@@ -2,6 +2,12 @@
 require_once "utility/apiHandler.php" ;
 require_once "utility/login_util.php";
 
+$app->get('/faculty/validate_email',function(){
+    global $db;
+    $email = $_GET['email'];
+    $available = validateEmail("faculty",$email);
+    echo json_encode(array("available"=>$available));
+});
 
 $app->post('/faculty/login',function(){
     $data = json_decode(file_get_contents('php://input'), true);
@@ -19,7 +25,6 @@ $app->post('/faculty/login',function(){
 
 $app->put('/faculty/signin',function(){
     $data = json_decode(file_get_contents('php://input'), true);
-
 // //Dummy data to test
     // $data = array();
     // $data['first_name']="anish";

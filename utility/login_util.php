@@ -1,5 +1,22 @@
 <?php
 
+function validateEmail($tablename,$email){
+    global $db;
+    $res = $db->query("Select email from ".$tablename." where email = '".$email."'");
+    if($res){
+        return 0;
+    }
+    else return 1;
+}
+function validateEno($eno){
+    global $db;
+    $res = $db->query("Select eno from student where enrollment_no = '".$eno."'");
+    if($res){
+        return 0;
+    }
+    else return 1;
+}
+
 function authenticate($tablename,$email,$password){
     global $db;
     

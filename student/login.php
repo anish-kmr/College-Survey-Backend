@@ -3,6 +3,20 @@ require_once "utility/apiHandler.php" ;
 require_once "utility/login_util.php";
 
 
+$app->get('/student/validate_email',function(){
+    global $db;
+    $email = $_GET['email'];
+    $available = validateEmail("student",$email);
+    echo json_encode(array("available"=>$available));
+});
+
+$app->get('/student/validate_eno',function(){
+    global $db;
+    $eno = $_GET['eno'];
+    $available = validateEno("student",$eno);
+    echo json_encode(array("available"=>$available));
+});
+
 $app->post('/student/login',function(){
     $data = json_decode(file_get_contents('php://input'), true);
     $email=$data['email'];
