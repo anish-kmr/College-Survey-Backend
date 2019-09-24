@@ -20,7 +20,7 @@ $create_student_query=
         `batch` VARCHAR(3) NOT NULL , 
         `year` INT(1) NOT NULL , 
         `email` VARCHAR(30) NOT NULL  UNIQUE, 
-        `type` VARCHAR(10) NOT NULL, 
+        `type` VARCHAR(15) NOT NULL, 
         `password` VARCHAR(32) NOT NULL 
     )
 ";

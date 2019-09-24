@@ -9,6 +9,7 @@ require_once "utility/setupDB.php";
 require_once "admin/login.php";
 require_once "student/login.php";
 require_once "faculty/login.php";
+require_once "subjects/index.php";
 
 
 
