@@ -29,16 +29,22 @@ $app->put('/faculty/signin',function(){
     // $data = array();
     // $data['first_name']="anish";
     // $data['last_name']=" value";
-    // $data['email']="delete@mail.com";
+    // $data['email']="de@l.com";
     // $data['password']="uhadsh ";
     // $data['department']="es ";
-    // $data['subjects']=array("Maths","ES");
+    // $data['subjects']=array("M","k");
     $status = signin("faculty",$data);
     $response = array("created"=>$status);
-
-
-
     echo json_encode($response);    
-})
+});
+
+$app->get('/faculty/all',function(){
+    global $db;
+    $res = $db->query('Select * from faculty');
+    if($res){
+        $response = $res;
+    }
+    echo json_encode($response);
+});
 
 ?>

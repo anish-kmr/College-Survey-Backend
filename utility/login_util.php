@@ -74,7 +74,7 @@ function signin($tablename,$details){
                 else{
                     $r = $db->query("Insert into subjects (name) values ('$subject')");
                     if($r){
-                        $s = $db->query("Select subjectID from subject where name='$subject'");
+                        $s = $db->query("Select subjectID from subjects where name='$subject'");
                         if($s) $subID=$s[0]['subjectID'];
                     }
                 }
