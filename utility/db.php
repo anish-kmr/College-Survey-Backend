@@ -18,6 +18,7 @@ class Database{
     public function resetDatabase(){
         $sql = "
 
+        drop table faculty_survey;
         drop table templateQs;
         drop table templates;
         drop table questions;

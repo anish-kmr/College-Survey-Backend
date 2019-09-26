@@ -42,9 +42,8 @@ $create_survey_query=
         `name` VARCHAR(30) NOT NULL , 
         `type` VARCHAR(20) NOT NULL , 
         `adminID` INT(5) NOT NULL , 
-        `facultyID` INT(5) NOT NULL ,
-        FOREIGN KEY(adminID) REFERENCES admin(adminID),
-        FOREIGN KEY(facultyID) REFERENCES faculty(facultyID)
+        `status` VARCHAR(10) NOT NULL ,
+        FOREIGN KEY(adminID) REFERENCES admin(adminID)
         
     )
 ";
@@ -83,6 +82,16 @@ $create_teaches_query=
         `subjectID` INT(5), 
         `facultyID` INT(5), 
         FOREIGN KEY(subjectID) REFERENCES subjects(subjectID),
+        FOREIGN KEY(facultyID) REFERENCES faculty(facultyID)
+
+    )
+";
+$create_faculty_survey_query=
+"
+    CREATE TABLE faculty_survey( 
+        `surveyID` INT(5), 
+        `facultyID` INT(5), 
+        FOREIGN KEY(surveyID) REFERENCES survey(surveyID),
         FOREIGN KEY(facultyID) REFERENCES faculty(facultyID)
 
     )

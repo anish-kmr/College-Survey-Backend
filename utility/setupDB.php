@@ -56,6 +56,10 @@ if(!$db->exist_table("templateQs")){
     $res = $db->multi_query($insert_templateqs_query);
     if($res) echo "Templates question created";
 }
+if(!$db->exist_table("faculty_survey")){
+    $db->query($create_faculty_survey_query);
+    echo "faculty_survey created <br>";
+}
 
 
 ?>
