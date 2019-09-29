@@ -62,5 +62,15 @@ $app->get("/surveys",function(){
     echo json_encode($response);
 });
 
+$app->get('/survey/faculties',function(){
+    global $db;
+    $surveyID = $_GET['surveyID'];
+    $faculties = $db->query("SELECT * FROM faculty_survey natural join faculty  WHERE faculty_survey.surveyID = $surveyID");
+    $response = array();
+    if($faculties){
+        $response = $faculties;
+    }
+    echo json_encode($response);
+})
 
 ?>
