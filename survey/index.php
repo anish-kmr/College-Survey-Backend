@@ -44,17 +44,23 @@ $app->get("/surveys",function(){
     foreach ($a as $r) {
         $name = $r['name'];
         if(array_key_exists($r['name'],$temp)){
-            array_push($temp[$name]['questions'],$r['statement']);
+            $qo['qsID'] = $r['qsID'];
+            $qo['statement'] = $r['statement'];
+            array_push($temp[$name]['questions'],$qo);
         }
         else{ 
             $temp[$name] = array();
+            $qo = array();
+            $qo['qsID'] = $r['qsID'];
+            $qo['statement'] = $r['statement'];
             $temp[$name]['name'] = $name;
             $temp[$name]['surveyID'] = $r['surveyID'];
             $temp[$name]['adminID'] = $r['adminID'];
             $temp[$name]['type'] = $r['type'];
             $temp[$name]['status'] = $r['status'];
             $temp[$name]['questions'] = array();
-            array_push($temp[$name]['questions'],$r['statement']);
+
+            array_push($temp[$name]['questions'],$qo);
         }  
     }
     foreach ($temp as $r) array_push($response,$r);

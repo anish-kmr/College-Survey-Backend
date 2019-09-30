@@ -60,25 +60,32 @@ function signin($tablename,$details){
         $password = $details['password'];
         $encpwd = md5($password);
         $sub = $details['subjects'];
+        $batches = $details['batches'];
         $insert = "Insert into faculty (name,email,department,password) values ('$name','$email','$department','$encpwd');";
         $res = $db->query($insert);
         if($res){
 
             $fac = $db->query("Select facultyID from faculty where email='$email'");
             if($fac) $facID = $fac[0]['facultyID'];
-            foreach ($sub as $subject) {
-                $row = $db->query("Select * from subjects where name = '$subject'");
+            foreach ($batches as $sub=>$b) {
+                $row = $db->query("Select * from subjects where name = '$sub'");
+                
                 if($row){
                     $subID = $row[0]['subjectID'];
                 }
                 else{
-                    $r = $db->query("Insert into subjects (name) values ('$subject')");
+                    $r = $db->query("Insert into subjects (name) values ('$sub')");
                     if($r){
-                        $s = $db->query("Select subjectID from subjects where name='$subject'");
+                        $s = $db->query("Select subjectID from subjects where name='$sub'");
                         if($s) $subID=$s[0]['subjectID'];
                     }
                 }
-                $rl=$db->query("Insert into teaches (subjectID,facultyID) values ('$subID','$facID')");
+                foreach ($b as $year => $batches) {
+                    foreach ($batches as $batch) {
+                        $y = (int)substr($year,-1);
+                        $rl = $db->query("Insert into teaches (subjectID,facultyID,batch,year) values ($subID,$facID,'$batch',$y)");
+                    }
+                }
             }
         }
         

@@ -81,6 +81,8 @@ $create_teaches_query=
     CREATE TABLE teaches ( 
         `subjectID` INT(5), 
         `facultyID` INT(5), 
+        `batch` VARCHAR(4),
+        `year` INT(2),
         FOREIGN KEY(subjectID) REFERENCES subjects(subjectID),
         FOREIGN KEY(facultyID) REFERENCES faculty(facultyID)
 

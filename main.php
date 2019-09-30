@@ -8,6 +8,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIO
 require_once "utility/setupDB.php";
 require_once "admin/login.php";
 require_once "student/login.php";
+require_once "student/index.php";
 require_once "faculty/login.php";
 require_once "subjects/index.php";
 require_once "survey/index.php";
