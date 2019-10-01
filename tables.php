@@ -47,6 +47,21 @@ $create_survey_query=
         
     )
 ";
+$create_feedback_query=
+"
+    CREATE TABLE feedback ( 
+        `feedbackID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+        `adminID` INT(5) NOT NULL , 
+        `facultyID` INT(5) NOT NULL , 
+        `surveyID` INT(5) NOT NULL , 
+        `studentID` INT(5) NOT NULL , 
+        FOREIGN KEY(adminID) REFERENCES admin(adminID),
+        FOREIGN KEY(facultyID) REFERENCES faculty(facultyID),
+        FOREIGN KEY(surveyID) REFERENCES survey(surveyID),
+        FOREIGN KEY(studentID) REFERENCES student(studentID)
+        
+    )
+";
 $create_templates_query=
 "
     CREATE TABLE templates ( 
@@ -71,6 +86,18 @@ $create_questions_query=
         `surveyID` INT(5) NOT NULL , 
         `statement` TEXT NOT NULL , 
         FOREIGN KEY(surveyID) REFERENCES survey(surveyID)
+        
+    )
+";
+$create_responses_query=
+"
+    CREATE TABLE responses ( 
+        `responseID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+        `feedbackID` INT(5) NOT NULL , 
+        `qsID` INT(5) NOT NULL , 
+        `response` INT(2) NOT NULL , 
+        FOREIGN KEY(feedbackID) REFERENCES feedback(feedbackID),
+        FOREIGN KEY(qsID) REFERENCES questions(qsID)
         
     )
 ";

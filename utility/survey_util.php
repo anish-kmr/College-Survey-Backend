@@ -54,8 +54,25 @@ function getStudentSurveys($studentID){
             foreach ($fsurveys as $s) {
                 $qs = $db->query("select * from questions where surveyID = '$s[surveyID]'");
                 $s['questions']=$qs;
-                $s['feedback'] = array_fill(0, count($qs), 0);
+                foreach ($qs as $key => $object) {
+                    unset($qs[$key]['statement']);
+                    unset($qs[$key][2]);
+                    unset($qs[$key][1]);
+                    unset($qs[$key][0]);
+                    $qs[$key]['response']=0;
 
+                }
+                $s['feedback']=$qs;
+                unset($s[0]);
+                unset($s[1]);
+                unset($s[2]);
+                unset($s[3]);
+                unset($s[4]);
+                unset($s[5]);
+                unset($s[6]);
+                unset($s[7]);
+                unset($s[8]);
+                unset($s[9]);
                 array_push($result['faculty'],$s);
             }
         }
@@ -77,4 +94,20 @@ function getStudentSurveys($studentID){
 
 
 };
+
+
+function getTotalStudents($facultyID){
+    global $db;
+    $count = $db->query("SELECT COUNT(*) FROM teaches as t ,student as s WHERE t.facultyID = $facultyID and t.batch=s.batch and t.year = s.year");
+    if($count) return $count[0][0];
+    else return 0;
+}
+
+function getTotalFeedbacks( $surveyID,$facultyID){
+    global $db;
+    
+    $count = $db->query("SELECT COUNT(*) FROM feedback WHERE surveyID=$surveyID and facultyID=$facultyID");
+    if($count) return $count[0][0];
+    else return 0;
+}
 ?>

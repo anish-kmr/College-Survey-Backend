@@ -12,6 +12,7 @@ require_once "student/index.php";
 require_once "faculty/login.php";
 require_once "subjects/index.php";
 require_once "survey/index.php";
+require_once "feedback/index.php";
 require_once "templates.php";
 
 

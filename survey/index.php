@@ -1,5 +1,6 @@
 <?php
 require_once 'utility/survey_util.php';
+
 $app->put('/survey/create',function(){
     $data = json_decode(file_get_contents('php://input'), true);
     // $data['name']="ffac18";
@@ -77,6 +78,15 @@ $app->get('/survey/faculties',function(){
         $response = $faculties;
     }
     echo json_encode($response);
-})
+});
+$app->get('/survey/analysis',function(){
+    $facultyID=$_GET['facultyID'];
+    $surveyID=$_GET['surveyID'];
+    $total=getTotalStudents($facultyID);
+    $feedbacks=getTotalFeedbacks( $surveyID,$facultyID);
+    
+    $response=array("total_students"=>$total,"total_feedbacks_given"=>$feedbacks);
+    echo json_encode($response);
 
+})
 ?>

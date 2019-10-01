@@ -36,7 +36,7 @@ if(!$db->exist_table("teaches")){
 }
 if(!$db->exist_table("survey")){
     $db->query($create_survey_query);
-    $db->query(set_ai("subjects",5000));
+    $db->query(set_ai("survey",5000));
     echo "survey created <br>";
 }
 if(!$db->exist_table("questions")){
@@ -60,6 +60,15 @@ if(!$db->exist_table("faculty_survey")){
     $db->query($create_faculty_survey_query);
     echo "faculty_survey created <br>";
 }
-
+if(!$db->exist_table("feedback")){
+    $db->query($create_feedback_query);
+    $db->query(set_ai("feedback",7000));
+    echo "feedback created <br>";
+}
+if(!$db->exist_table("responses")){
+    $db->query($create_responses_query);
+    $db->query(set_ai("responses",8000));
+    echo "responses created <br>";
+}
 
 ?>
