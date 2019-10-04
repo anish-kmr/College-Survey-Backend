@@ -14,6 +14,7 @@ require_once "subjects/index.php";
 require_once "survey/index.php";
 require_once "feedback/index.php";
 require_once "templates.php";
+// require_once "seeds.php";
 
 
 

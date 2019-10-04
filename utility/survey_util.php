@@ -34,7 +34,7 @@ function getStudentSurveys($studentID){
         $year = $student[0]['year'];
         $type = $student[0]['type'];
         $qry = "
-        SELECT f.facultyID, f.name as name , s.surveyID,s.type,s.name as surveyName, s.adminID, s.status, t.batch, t.year, sub.name as subjectName 
+        SELECT DISTINCT f.facultyID, f.name as name , s.surveyID,s.type,s.name as surveyName, s.adminID, s.status, t.batch, t.year, sub.name as subjectName 
         from 
             faculty_survey  as fs
         NATURAL JOIN 
@@ -54,6 +54,8 @@ function getStudentSurveys($studentID){
             foreach ($fsurveys as $s) {
                 $qs = $db->query("select * from questions where surveyID = '$s[surveyID]'");
                 $s['questions']=$qs;
+                $s['sid']=$s['facultyID'];
+
                 foreach ($qs as $key => $object) {
                     unset($qs[$key]['statement']);
                     unset($qs[$key][2]);
@@ -98,7 +100,7 @@ function getStudentSurveys($studentID){
 
 function getTotalStudents($facultyID){
     global $db;
-    $count = $db->query("SELECT COUNT(*) FROM teaches as t ,student as s WHERE t.facultyID = $facultyID and t.batch=s.batch and t.year = s.year");
+    $count = $db->query("SELECT COUNT(*) FROM student WHERE (batch,year) IN (SELECT batch,year FROM teaches WHERE facultyID=$facultyID)");
     if($count) return $count[0][0];
     else return 0;
 }

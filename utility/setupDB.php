@@ -70,5 +70,4 @@ if(!$db->exist_table("responses")){
     $db->query(set_ai("responses",8000));
     echo "responses created <br>";
 }
-
 ?>
