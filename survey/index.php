@@ -84,9 +84,16 @@ $app->get('/survey/analysis',function(){
     $surveyID=$_GET['surveyID'];
     $total=getTotalStudents($facultyID);
     $feedbacks=getTotalFeedbacks( $surveyID,$facultyID);
-    
     $response=array("total_students"=>$total,"total_feedbacks_given"=>$feedbacks);
     echo json_encode($response);
 
+});
+$app->get('/survey/faculty/analysis',function(){
+    $facultyID=$_GET['facultyID'];
+    $surveyID=$_GET['surveyID'];
+    $response=getAnalysis($surveyID,$facultyID);
+    echo json_encode($response);
+
 })
+
 ?>

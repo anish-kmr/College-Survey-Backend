@@ -112,4 +112,36 @@ function getTotalFeedbacks( $surveyID,$facultyID){
     if($count) return $count[0][0];
     else return 0;
 }
+
+function getAnalysis($surveyID,$facultyID){
+    global $db;
+    $result = array("avg_response"=>array(),"questions"=>array());
+    $avg_res = $db->query("
+        SELECT q.statement, r.qsID ,AVG(r.response) as average FROM feedback as f INNER JOIN responses as r on f.feedbackID=r.feedbackID inner join questions as q on q.qsID = r.qsID  WHERE f.facultyID=$facultyID and f.surveyID=$surveyID GROUP BY r.qsID
+        ");
+    if($avg_res){
+        foreach ($avg_res as $a) {
+            unset($a[0]);
+            unset($a[1]);
+            unset($a[2]);
+            $qsid = $a['qsID'];
+            $result['questions'][$qsid]=array();
+            $qs_analysis=$db->query("SELECT COUNT(r.responseID) as count, r.response FROM feedback as f INNER JOIN responses as r on f.feedbackID=r.feedbackID WHERE f.facultyID=$facultyID and f.surveyID=$surveyID and r.qsID=$qsid GROUP BY r.response
+            ");
+            if($qs_analysis){
+                $total_res = 0;
+                foreach ($qs_analysis as $q) {
+                    $total_res+=(int)$q['count'];
+                }
+                $result['questions'][$qsid]['statement']=$a['statement'];
+                $result['questions'][$qsid]['total_responses']=$total_res;
+                $result['questions'][$qsid]['analysis']=$qs_analysis;
+            }
+            array_push($result['avg_response'],$a);
+        }
+        return $result;
+    }
+}
+
+
 ?>
