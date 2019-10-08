@@ -32,6 +32,7 @@ $create_faculty_query=
         `name` VARCHAR(30) NOT NULL , 
         `email` VARCHAR(30) NOT NULL  UNIQUE, 
         `department` VARCHAR(15) NOT NULL , 
+        `rating` DECIMAL(2,1) NOT NULL , 
         `password` VARCHAR(32) NOT NULL 
     )
 ";
@@ -53,6 +54,7 @@ $create_feedback_query=
         `feedbackID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         `adminID` INT(5) NOT NULL , 
         `facultyID` INT(5) NOT NULL , 
+        `rating` INT(1) NOT NULL,
         `surveyID` INT(5) NOT NULL , 
         `studentID` INT(5) NOT NULL , 
         FOREIGN KEY(adminID) REFERENCES admin(adminID),

@@ -27,6 +27,7 @@ function createFeedback($data){
 
             $rated = $db->query("UPDATE feedback SET rating = $rating WHERE feedbackID = $feedbackID");
             $res = $db->query("UPDATE responses SET response = $response WHERE feedbackID = $feedbackID and qsID = $qsID");
+            updateRating($facultyID);
             if(!$res || !$rated) $result = 0;
         }
         $result = -1;
@@ -43,6 +44,7 @@ function createFeedback($data){
                     $res = $db->query("Insert into responses(feedbackID,qsID,response) values ($feedbackID,$qsID,$response)");
                     if(!$res) $result = 0;
                 }
+                updateRating($facultyID);
             }
         }
         else{
@@ -50,6 +52,19 @@ function createFeedback($data){
         }
     }
     return $result;
+}
+
+function updateRating($facultyID){
+    global $db;
+    $sel = $db->query("SELECT AVG(rating) as avg_rating from feedback where facultyID=$facultyID");
+    if($sel){
+        $avg_rating=$sel[0]['avg_rating'];
+        $updated = $db->query("UPDATE faculty SET rating = $avg_rating WHERE facultyID = $facultyID");
+        if($updated) return 1;
+        else return 0;
+    }
+    else return 0;
+
 }
 
 
