@@ -46,7 +46,7 @@ function getStudentSurveys($studentID){
         INNER JOIN subjects as sub
             on t.subjectID = sub.subjectID
         where 
-            s.status='active' and t.batch='$batch' and t.year=$year
+            s.status='active' and t.batch='$batch' and t.year=$year and s.type='faculty'
 
         ";
         $fsurveys = $db->query($qry);

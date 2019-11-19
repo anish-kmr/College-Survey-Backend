@@ -36,7 +36,14 @@ $app->put('/admin/signin',function(){
     // $data['department']="uhadsh value";
     // $data['password']="uhadsh value";
     $status = signin("admin",$data);
-    $response = array("created"=>$status);
+    if($status==1){
+        $email = $data['email'];
+        $password = $data['password'];
+        $flag = authenticate("admin",$email,$password);
+        $user = $flag[0];
+    }
+    else $user=NULL;
+    $response = array("created"=>$status,"user"=>$user);
 
 
 
