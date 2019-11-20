@@ -32,7 +32,6 @@ function getStudentSurveys($studentID){
     if($student){
         $batch = $student[0]['batch'];
         $year = $student[0]['year'];
-        $type = $student[0]['type'];
         $qry = "
         SELECT DISTINCT f.facultyID, f.name as name , s.surveyID,s.type,s.name as surveyName, s.adminID, s.status, t.batch, t.year, sub.name as subjectName 
         from 
@@ -75,7 +74,12 @@ function getStudentSurveys($studentID){
                 unset($s[7]);
                 unset($s[8]);
                 unset($s[9]);
-                array_push($result['faculty'],$s);
+                
+                if(isset($result['faculty'][$s['surveyName']]))  array_push($result['faculty'][$s['surveyName']],$s);
+                else $result['faculty'][$s['surveyName']]=array($s);
+                
+
+                // array_push($result['faculty'],$s);
             }
         }
         // if($type=="hosteller"){
