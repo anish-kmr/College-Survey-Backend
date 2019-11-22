@@ -11,7 +11,16 @@ $app->put('/survey/create',function(){
     $status = createSurvey($data);
     echo json_encode(array("status"=>$status));
 });
-
+$app->post('/survey/close',function(){
+    global $db;
+    $data = json_decode(file_get_contents('php://input'), true);
+    $surveyID = $data['surveyID'];
+    $response = array("closed"=>false);
+    $res = $db->query("Update survey set status='closed' where surveyID = $surveyID");
+    if($res) $response['closed']=true;
+    
+    echo json_encode($response);
+});
 // $app->get('/surveys',function(){
 //     global $db;
 //     $status = $_GET['status'];

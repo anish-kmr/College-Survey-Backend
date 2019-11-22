@@ -5,7 +5,9 @@ require_once "utility/survey_util.php" ;
 
 $app->get('/student/surveys',function(){
     $studentID = $_GET['sid'];
-    $response = getStudentSurveys($studentID);
+    $status = $_GET['status'];
+    $response = getStudentSurveys($studentID,$status);
+    $response['stats']=$status;
     echo json_encode($response);
 
 })

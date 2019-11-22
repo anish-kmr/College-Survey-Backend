@@ -25,7 +25,7 @@ function createSurvey($details){
     }
     return $rel;
 };
-function getStudentSurveys($studentID){
+function getStudentSurveys($studentID,$status){
     global $db;
     $result=array("faculty"=>array(),"mess"=>array(),"hostel"=>array());
     $student = $db->query("select * from student where studentID = $studentID");
@@ -45,7 +45,7 @@ function getStudentSurveys($studentID){
         INNER JOIN subjects as sub
             on t.subjectID = sub.subjectID
         where 
-            s.status='active' and t.batch='$batch' and t.year=$year and s.type='faculty'
+            s.status= '$status' and t.batch='$batch' and t.year=$year and s.type='faculty'
 
         ";
         $fsurveys = $db->query($qry);
@@ -54,16 +54,30 @@ function getStudentSurveys($studentID){
                 $qs = $db->query("select * from questions where surveyID = '$s[surveyID]'");
                 $s['questions']=$qs;
                 $s['sid']=$s['facultyID'];
+                $fid=$s['facultyID'];
+                $surid=$s['surveyID'];
+                
+                $fb = $db->query("
+                                SELECT response,qsID FROM 
+                                `feedback` NATURAL JOIN responses 
+                                where surveyID=$surid and facultyID=$fid and studentID=$studentID
+                                "
+                );
+                
 
-                foreach ($qs as $key => $object) {
-                    unset($qs[$key]['statement']);
-                    unset($qs[$key][2]);
-                    unset($qs[$key][1]);
-                    unset($qs[$key][0]);
-                    $qs[$key]['response']=0;
-
+                
+                if($fb) $s['feedback']=$fb;
+                else{
+                    foreach ($qs as $key => $object) {
+                        unset($qs[$key]['statement']);
+                        unset($qs[$key][2]);
+                        unset($qs[$key][1]);
+                        unset($qs[$key][0]);
+                        $qs[$key]['response']=0;
+    
+                    }                    
+                    $s['feedback']=$qs;
                 }
-                $s['feedback']=$qs;
                 unset($s[0]);
                 unset($s[1]);
                 unset($s[2]);
@@ -88,7 +102,28 @@ function getStudentSurveys($studentID){
                 foreach ($mhsurveys as $m) {
                     $qs = $db->query("select * from questions where surveyID = '$m[surveyID]'");
                     $m['questions']=$qs;
-                    $m['feedback'] = array_fill(0, count($qs), 0);
+                    $surid=$m['surveyID'];
+                    $fid=0;
+                    $fb = $db->query("
+                                SELECT response,qsID FROM 
+                                `feedback` NATURAL JOIN responses 
+                                where surveyID=$surid and facultyID=$fid and studentID=$studentID
+                                "
+                            );
+                    
+                    if($fb) $m['feedback'] = $fb;
+                    else{
+                        foreach ($qs as $key => $object) {
+                            unset($qs[$key]['statement']);
+                            unset($qs[$key][2]);
+                            unset($qs[$key][1]);
+                            unset($qs[$key][0]);
+                            $qs[$key]['response']=0;
+                            $m['feedback']=$qs;
+        
+                        }
+                    }
+                    // $m['feedback'] = array_fill(0, count($qs), 0);
                     if($m['type'] == "mess") array_push($result['mess'],$m);
                     else if($m['type'] == "hostel") array_push($result['hostel'],$m);
                 }
