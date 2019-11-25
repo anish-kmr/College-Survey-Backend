@@ -70,4 +70,9 @@ if(!$db->exist_table("responses")){
     $db->query(set_ai("responses",8000));
     echo "responses created <br>";
 }
+if(!$db->exist_table("review")){
+    $db->query($create_review_query);
+    $db->query(set_ai("review",9000));
+    echo "review created <br>";
+}
 ?>

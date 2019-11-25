@@ -136,6 +136,46 @@ function getStudentSurveys($studentID,$status){
 
 };
 
+function getStudentFaculties($studentID,$past=false){
+    global $db;
+    $result=array("faculties"=>array());
+    $student = $db->query("select batch,year from student where studentID = $studentID");
+    if($student){
+        $batch = $student[0]['batch'];
+        $year = $student[0]['year'];
+        $qry=
+        "SELECT DISTINCT s.subjectID,s.name as subjectName, f.facultyID,f.name as facultyName 
+        from 
+        teaches as t inner JOIN faculty as f
+             on t.facultyID=f.facultyID 
+        inner join subjects as s 
+            on t.subjectID=s.subjectID 
+        where batch = '$batch' and year=$year";
+        
+        $faculties = $db->query($qry);
+        if($faculties){
+            foreach ($faculties as $key => $value) {
+                unset($faculties[$key][0]);
+                unset($faculties[$key][1]);
+                unset($faculties[$key][2]);
+                unset($faculties[$key][3]);
+            }
+            if($past){
+                foreach ($faculties as $key => $value) {
+                    $fid=$faculties[$key]['facultyID'];
+                    $pr = $db->query("SELECT * FROM reviews where studentID=$studentID and facultyID=$fid");
+                    if($pr){
+                        $faculties[$key]['reviews']=$pr;
+                    }
+                }
+            }
+            $result["faculties"]=$faculties;
+        }
+
+
+    }
+    return $result;
+}
 
 function getTotalStudents($facultyID){
     global $db;
@@ -181,6 +221,7 @@ function getAnalysis($surveyID,$facultyID){
         return $result;
     }
 }
+
 
 
 ?>

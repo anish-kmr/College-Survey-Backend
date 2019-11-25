@@ -103,7 +103,20 @@ $create_responses_query=
         
     )
 ";
+$create_review_query=
+"
+    CREATE TABLE review ( 
+        `reviewID` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+        `facultyID` INT(5) NOT NULL ,  
+        `subjectID` INT(5) NOT NULL ,  
+        `title` VARCHAR(30) ,
+        `review` TEXT, 
+        FOREIGN KEY(facultyID) REFERENCES faculty(facultyID),
+        FOREIGN KEY(subjectID) REFERENCES subjects(subjectID)
+        
+    )
 
+";
 
 $create_teaches_query=
 "
