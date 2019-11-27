@@ -89,11 +89,18 @@ $app->get('/survey/faculties',function(){
     echo json_encode($response);
 });
 $app->get('/survey/analysis',function(){
-    $facultyID=$_GET['facultyID'];
+    if(isset($_GET['facultyID'])) $facultyID=$_GET['facultyID'];
+    else $facultyID=0;
     $surveyID=$_GET['surveyID'];
     $total=getTotalStudents($facultyID);
     $feedbacks=getTotalFeedbacks( $surveyID,$facultyID);
     $response=array("total_students"=>$total,"total_feedbacks_given"=>$feedbacks);
+    echo json_encode($response);
+
+});
+$app->get('/survey/admin/analysis',function(){
+    $surveyID=$_GET['surveyID'];
+    $response=getAdminAnalysis($surveyID);
     echo json_encode($response);
 
 });

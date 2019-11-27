@@ -58,15 +58,19 @@ function getStudentSurveys($studentID,$status){
                 $surid=$s['surveyID'];
                 
                 $fb = $db->query("
-                                SELECT response,qsID FROM 
+                                SELECT rating,response,qsID FROM 
                                 `feedback` NATURAL JOIN responses 
                                 where surveyID=$surid and facultyID=$fid and studentID=$studentID
                                 "
                 );
-                
 
                 
-                if($fb) $s['feedback']=$fb;
+                    
+                
+                if($fb){
+                    $s['rating']=$fb[0]['rating'];
+                    $s['feedback']=$fb;
+                }
                 else{
                     foreach ($qs as $key => $object) {
                         unset($qs[$key]['statement']);
@@ -77,6 +81,7 @@ function getStudentSurveys($studentID,$status){
     
                     }                    
                     $s['feedback']=$qs;
+                    $s['rating']=0;
                 }
                 unset($s[0]);
                 unset($s[1]);
@@ -179,17 +184,18 @@ function getStudentFaculties($studentID,$past=false){
 
 function getTotalStudents($facultyID){
     global $db;
-    $count = $db->query("SELECT COUNT(*) FROM student WHERE (batch,year) IN (SELECT batch,year FROM teaches WHERE facultyID=$facultyID)");
+    if($facultyID)
+        $count = $db->query("SELECT COUNT(*) FROM student WHERE (batch,year) IN (SELECT batch,year FROM teaches WHERE facultyID=$facultyID)");
     if($count) return $count[0][0];
-    else return 0;
+    else return -1;
 }
 
 function getTotalFeedbacks( $surveyID,$facultyID){
     global $db;
-    
-    $count = $db->query("SELECT COUNT(*) FROM feedback WHERE surveyID=$surveyID and facultyID=$facultyID");
+    if($facultyID)
+        $count = $db->query("SELECT COUNT(*) FROM feedback WHERE surveyID=$surveyID and facultyID=$facultyID");
     if($count) return $count[0][0];
-    else return 0;
+    else return -1;
 }
 
 function getAnalysis($surveyID,$facultyID){
@@ -222,6 +228,26 @@ function getAnalysis($surveyID,$facultyID){
     }
 }
 
+function getAdminAnalysis($surveyID){
+    global $db;
+    $result = array();
+    $faculties = $db->query("SELECT Distinct facultyID,name,department from faculty_survey NATURAL JOIN faculty where surveyID=$surveyID");
+    
+    if($faculties){
+        foreach ($faculties as $value) {
+            $ts=getTotalStudents($value['facultyID']);
+            $fg=getTotalFeedbacks($surveyID,$value['facultyID']);
+            $result[$value['name']]=array(
+                "facultyID"=>$value['facultyID'],
+                "total_students"=>$ts,
+                "total_feedbacks_given"=>$fg,
+                "department"=>$value['department'],
+            );
+        }
+    }
+    return $result;
+
+}
 
 
 ?>
