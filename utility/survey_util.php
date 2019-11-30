@@ -228,26 +228,41 @@ function getAnalysis($surveyID,$facultyID){
     }
 }
 
-function getAdminAnalysis($surveyID){
+function getAdminAnalysis($surveyID,$type){
     global $db;
     $result = array();
-    $faculties = $db->query("SELECT Distinct facultyID,name,department from faculty_survey NATURAL JOIN faculty where surveyID=$surveyID");
+    if($type=="faculty"){
+        $faculties = $db->query("SELECT Distinct facultyID,name,department from faculty_survey NATURAL JOIN faculty where surveyID=$surveyID");
     
-    if($faculties){
-        foreach ($faculties as $value) {
-            $ts=getTotalStudents($value['facultyID']);
-            $fg=getTotalFeedbacks($surveyID,$value['facultyID']);
-            $result[$value['name']]=array(
-                "facultyID"=>$value['facultyID'],
-                "total_students"=>$ts,
-                "total_feedbacks_given"=>$fg,
-                "department"=>$value['department'],
-            );
+        if($faculties){
+            foreach ($faculties as $value) {
+                $ts=getTotalStudents($value['facultyID']);
+                $fg=getTotalFeedbacks($surveyID,$value['facultyID']);
+                $result[$value['name']]=array(
+                    "facultyID"=>$value['facultyID'],
+                    "total_students"=>$ts,
+                    "total_feedbacks_given"=>$fg,
+                    "department"=>$value['department'],
+                );
+            }
         }
+    
     }
+    else{
+        $totalfeeds = $db->query("SELECT DISTINCT COUNT(*) as c from feedback where surveyID=$surveyID");
+        $totalreq = $db->query("SELECT DISTINCT COUNT(*) as c from  student");
+        $result['total_feedbacks_given']=$totalfeeds[0]['c'];
+        $result['total_feedbacks_required']=$totalreq[0]['c'];
+    }
+    
     return $result;
 
 }
 
+function updateStudentCoins($studentID,$coins){
+    global $db;
+    $status = $db->query("UPDATE student SET coins = coins+$coins WHERE studentID = $studentID");
 
+    return "UPDATE student SET coins = coins+$coins WHERE studentID = $studentID";
+}   
 ?>

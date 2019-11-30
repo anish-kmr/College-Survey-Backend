@@ -34,7 +34,6 @@ function createFeedback($data){
     }
     else{
         $inserted = $db->query("Insert into feedback (adminID,facultyID,rating,surveyID,studentID) values ($adminID,$facultyID,$rating,$surveyID,$studentID)");
-        echo "new\n$inserted\n";
         if($inserted){
             $select = $db->query($qry);
             if($select){ 

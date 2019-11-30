@@ -99,8 +99,11 @@ $app->get('/survey/analysis',function(){
 
 });
 $app->get('/survey/admin/analysis',function(){
+    global $db;
     $surveyID=$_GET['surveyID'];
-    $response=getAdminAnalysis($surveyID);
+    $type = $db->query("SELECT type from survey where surveyID=$surveyID ");
+    $type=$type[0]['type'];
+    $response=getAdminAnalysis($surveyID,$type);
     echo json_encode($response);
 
 });

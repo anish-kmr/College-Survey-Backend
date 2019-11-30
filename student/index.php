@@ -21,9 +21,17 @@ $app->get('/student/faculties',function(){
 
 $app->get('/student/pastreviews',function(){
     $studentID=$_GET['studentID'];
-    global $db;
     $response=getStudentFaculties($studentID,true);
-    
     echo json_encode($response);
+});
+$app->put('/student/updatecoins',function(){
+    $data = json_decode(file_get_contents('php://input'), true);
+    $studentID = $data['studentID'];
+    $coins = $data['coins'];
+    $status = updateStudentCoins($studentID,$coins);
+    $response = array("success"=>$status,"coins"=>$coins);
+    echo json_encode($response);
+
+
 });
 ?>
