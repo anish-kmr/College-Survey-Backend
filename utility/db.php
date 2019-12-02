@@ -17,7 +17,7 @@ class Database{
     }
     public function resetDatabase(){
         $sql = "
-
+        drop table reviews;
         drop table faculty_survey;
         drop table templateQs;
         drop table templates;
@@ -28,6 +28,7 @@ class Database{
         drop table admin;
         drop table faculty;
         drop table subjects;
+        
 
         ";
         mysqli_multi_query($this->connection,$sql);

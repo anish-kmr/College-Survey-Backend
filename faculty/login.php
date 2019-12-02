@@ -50,7 +50,15 @@ $app->put('/faculty/signin',function(){
     //     ));
 
     $status = signin("faculty",$data);
-    $response = array("created"=>$status);
+    if($status==1){
+        $email = $data['email'];
+        $password = $data['password'];
+        $flag = authenticate("faculty",$email,$password);
+        $user = $flag[0];
+    }
+    else $user=NULL;
+    $response = array("created"=>$status,"user"=>$user);
+
     echo json_encode($response);    
 });
 

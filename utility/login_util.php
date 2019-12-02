@@ -1,5 +1,6 @@
 <?php
 
+
 function validateEmail($tablename,$email){
     global $db;
     $res = $db->query("Select email from ".$tablename." where email = '".$email."'");
@@ -28,6 +29,8 @@ function authenticate($tablename,$email,$password){
     }
     else return -1;
 }
+
+
 
 function signin($tablename,$details){
     global $db;

@@ -1,6 +1,8 @@
 <?php
 
+//Creates Survey --> Questions in survey and faculty_survey relation
 
+//Aviral
 function createSurvey($details){
     global $db;
     $rel=0;
@@ -25,6 +27,10 @@ function createSurvey($details){
     }
     return $rel;
 };
+
+
+
+//Returns an array of all Surveys(active or closed) available for given student
 function getStudentSurveys($studentID,$status){
     global $db;
     $result=array("faculty"=>array(),"mess"=>array(),"hostel"=>array());
@@ -141,7 +147,10 @@ function getStudentSurveys($studentID,$status){
 
 };
 
-function getStudentFaculties($studentID,$past=false){
+
+//Returns list of faculties with their past reviews(if past is true), teaching a student 
+//Aviral
+function getStudentFaculties($studentID,$past=false){ 
     global $db;
     $result=array("faculties"=>array());
     $student = $db->query("select batch,year from student where studentID = $studentID");
@@ -165,7 +174,9 @@ function getStudentFaculties($studentID,$past=false){
                 unset($faculties[$key][2]);
                 unset($faculties[$key][3]);
             }
-            if($past){
+            
+            // get pastreviews as reviewed by this student
+            if($past){ 
                 foreach ($faculties as $key => $value) {
                     $fid=$faculties[$key]['facultyID'];
                     $pr = $db->query("SELECT * FROM reviews where studentID=$studentID and facultyID=$fid");
@@ -182,7 +193,10 @@ function getStudentFaculties($studentID,$past=false){
     return $result;
 }
 
-function getTotalStudents($facultyID){
+
+//Returns Total number of students taught by a faculty
+//Aviral
+function getTotalStudents($facultyID){ 
     global $db;
     if($facultyID)
         $count = $db->query("SELECT COUNT(*) FROM student WHERE (batch,year) IN (SELECT batch,year FROM teaches WHERE facultyID=$facultyID)");
@@ -190,6 +204,10 @@ function getTotalStudents($facultyID){
     else return -1;
 }
 
+
+
+//Returns Total Number Of Feedbacks given to a Faculty in a survey
+//Aviral
 function getTotalFeedbacks( $surveyID,$facultyID){
     global $db;
     if($facultyID)
@@ -198,6 +216,9 @@ function getTotalFeedbacks( $surveyID,$facultyID){
     else return -1;
 }
 
+
+//Return array of Average response and  Question wise responses of given faculty
+//Aviral
 function getAnalysis($surveyID,$facultyID){
     global $db;
     $result = array("avg_response"=>array(),"questions"=>array());
@@ -228,6 +249,8 @@ function getAnalysis($surveyID,$facultyID){
     }
 }
 
+//Returns TotalNoOfStudents , TotalFeedbacksGiven For all faculties in a Survey 
+//Aviral
 function getAdminAnalysis($surveyID,$type){
     global $db;
     $result = array();
@@ -259,6 +282,9 @@ function getAdminAnalysis($surveyID,$type){
 
 }
 
+
+//Updates NUmber Of COins of a student 
+//Aviral
 function updateStudentCoins($studentID,$coins){
     global $db;
     $status = $db->query("UPDATE student SET coins = coins+$coins WHERE studentID = $studentID");

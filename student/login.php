@@ -47,8 +47,14 @@ $app->put('/student/signin',function(){
     // $data['email']="delete@mail.com";
     // $data['password']="123";
     $status = signin("student",$data);
-    $response = array("created"=>$status);
-
+    if($status==1){
+        $email = $data['email'];
+        $password = $data['password'];
+        $flag = authenticate("student",$email,$password);
+        $user = $flag[0];
+    }
+    else $user=NULL;
+    $response = array("created"=>$status,"user"=>$user);
 
 
     echo json_encode($response);    

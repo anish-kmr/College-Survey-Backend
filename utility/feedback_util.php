@@ -1,5 +1,10 @@
 <?php
 
+//Returns
+    // 1 if Successfully inserts a new feedback record
+    // 0 if failed to insert
+    // -1 if feedback already exists.Updates EXISTING feedback
+
 function createFeedback($data){
     global $db;
     $result=1;
@@ -54,6 +59,8 @@ function createFeedback($data){
     return $result;
 }
 
+
+//UPdate Rating of a faculty
 function updateRating($facultyID){
     global $db;
     $sel = $db->query("SELECT AVG(rating) as avg_rating from feedback where facultyID=$facultyID");
