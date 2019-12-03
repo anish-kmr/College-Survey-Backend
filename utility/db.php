@@ -2,6 +2,10 @@
 class Database{
     private $connection;
     public function __construct(){
+
+        $conn = mysqli_connect("localhost","root","");
+        mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS survey");
+        mysqli_close($conn);
         $this->connection = mysqli_connect("localhost","root","","survey");
     }
     public function is_connected(){
